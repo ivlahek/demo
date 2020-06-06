@@ -17,8 +17,6 @@ class BitcoinPriceImporterTest extends IntegrationTest {
     @Autowired
     private BitcoinPriceImporter bitcoinPriceImporter;
 
-
-
     @Test
     public void should_import_from_external_source() {
         //OPERATE

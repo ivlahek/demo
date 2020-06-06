@@ -11,6 +11,7 @@ import org.springframework.data.domain.Pageable;
 
 import java.time.Instant;
 import java.util.Date;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.extractProperty;
@@ -44,13 +45,22 @@ class BitcoinPriceRepositoryTest extends IntegrationTest {
     }
 
     @Test
-    public void should_find_latest_bitcoin_price() {
+    public void should_find_bitcoin_price_between_date() {
         //OPERATE
         final Page<BitcoinPrice> page = bitcoinPriceRepository.findByDateCreatedBetween(bitcoinPrice3.getDateCreated(), bitcoinPrice2.getDateCreated(), Pageable.unpaged());
 
         //CHECK
         assertThat(page.getTotalElements()).isEqualTo(2);
         assertThat(extractProperty("id").from(page.getContent())).containsOnly(bitcoinPrice3.getId(), bitcoinPrice2.getId());
+    }
+
+    @Test
+    public void should_fine_latest_price() {
+        //OPERATE
+        final Optional<BitcoinPrice> price = bitcoinPriceRepository.findFirstByOrderByDateCreatedDesc();
+
+        //CHECK
+        assertThat(price.get().getId()).isEqualTo(bitcoinPrice1.getId());
     }
 
 }

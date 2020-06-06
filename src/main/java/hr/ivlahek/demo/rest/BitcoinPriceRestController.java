@@ -35,7 +35,7 @@ public class BitcoinPriceRestController {
             path = "/api/v1/bitcoin-prices/latest",
             produces = "application/json"
     )
-    //this normally I would extract to service layer
+    //this normally I would extract to service layer but you said not to get too complicated. If needed I can explain why I did not put this to service layer yet
     public BitcoinPriceDto getLastBitcoinPrice() {
         logger.info("Get last bitcoin price called!");
         final BitcoinPriceDto priceDto = map(bitcoinPriceRepository.findFirstByOrderByDateCreatedDesc().orElse(new BitcoinPrice()));
@@ -48,7 +48,7 @@ public class BitcoinPriceRestController {
             produces = "application/json"
     )
     @ApiPageable
-    //this normally I would extract to service layer
+    //this normally I would extract to service layer but you said not to get too complicated. If needed I can explain why I did not put this to service layer yet
     public BitcoinPriceDtoPage getBitcoinPrices(
             @ApiParam(value = "To period of time for which data will be returned! ISO 8061 format is used! Example 2020-06-03T20:00:00.000Z", defaultValue = "2020-06-03T20:00:00.000Z", required = true)
             @DateTimeFormat(iso = DateTimeFormat.ISO.DATE_TIME) @RequestParam(name = "dateFrom") Date from,
