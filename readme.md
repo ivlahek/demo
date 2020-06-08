@@ -48,6 +48,6 @@ Run the following script to build and run the service:
 - will build the application using maven
 - will run the application on a port 8080
 
-
-
+## Running tests locally
+You will need an empty Postgres database listening on a port 5432
 
