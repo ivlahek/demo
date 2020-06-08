@@ -1,4 +1,5 @@
 #Demo service
+
 ##Introduction
 Demo service is a Spring boot application:
 - listening on a port 8080 (REST API)
